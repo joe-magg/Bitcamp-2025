@@ -74,15 +74,13 @@ def encrypt():
 @app.route('/decrypt', methods=['GET', 'POST'])
 def decrypt():
     if request.method == 'POST':
-        if 'image' not in request.files:
-            flash('No image file uploaded')
-            return redirect(request.url)
+        if 'encrypted_image_file' not in request.files:
+            return render_template('decrypt.html', error="No image file uploaded")
         
-        file = request.files['image']
+        file = request.files['encrypted_image_file']
         
         if file.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
+            return render_template('decrypt.html', error="No file selected")
         
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
@@ -99,11 +97,9 @@ def decrypt():
                 
                 return render_template('decrypt.html', 
                                      result=True, 
-                                     decrypted_text=decrypted_text,
-                                     image=filename)
+                                     plaintext=decrypted_text)
             except Exception as e:
-                flash('Error decrypting image: ' + str(e))
-                return redirect(request.url)
+                return render_template('decrypt.html', error=str(e))
     
     return render_template('decrypt.html', result=False)
 

@@ -32,9 +32,48 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Decryption Complete!</h5>
-            <div class="alert alert-success mt-3" style="background-color: rgba(231, 151, 60, 0.2); border-color: var(--color-orange); color: var(--color-sand);">
-                <strong>Decrypted Message:</strong> {{ plaintext }}
-            </div>
+            {% if ciphertext %}
+                <div class="alert alert-success mt-3" style="background-color: rgba(231, 151, 60, 0.2); border-color: var(--color-orange); color: var(--color-sand);">
+                    <strong>Embedded Ciphertext</strong>
+                    <h6 id="cipherwriter"></h6>
+                </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const cipherwriterElement = document.getElementById('cipherwriter');
+                        if (cipherwriterElement) {
+                            new Typed('#cipherwriter', {
+                                strings: [{{ ciphertext|tojson }}],
+                                typeSpeed: 50,
+                                loop: false,
+                                showCursor: false
+                            });
+                        } else {
+                            console.error("Element with ID 'cipherwriter' not found.");
+                        }
+                    });
+                </script>
+            {% endif %}
+            {% if plaintext %}
+                <div class="alert alert-success mt-3" style="background-color: rgba(231, 151, 60, 0.2); border-color: var(--color-orange); color: var(--color-sand);">
+                    <strong>Decrypted Message</strong>
+                    <h6 id="plainwriter"></h6>
+                </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const plainwriterElement = document.getElementById('plainwriter');
+                        if (plainwriterElement) {
+                            new Typed('#plainwriter', {
+                                strings: [{{ plaintext|tojson }}],
+                                typeSpeed: 50,
+                                loop: false,
+                                showCursor: false
+                            });
+                        } else {
+                            console.error("Element with ID 'plainwriter' not found.");
+                        }
+                    });
+                </script>
+            {% endif %}
             <div class="mt-4">
                 <a href="{{ url_for('decrypt') }}" class="btn btn-primary">
                     Decrypt Another Message

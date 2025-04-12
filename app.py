@@ -97,6 +97,7 @@ def decrypt():
                 
                 return render_template('decrypt.html', 
                                      result=True, 
+                                     ciphertext=encrypted_text,
                                      plaintext=decrypted_text)
             except Exception as e:
                 return render_template('decrypt.html', error=str(e))

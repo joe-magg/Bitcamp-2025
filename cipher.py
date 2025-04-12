@@ -1,6 +1,5 @@
 class PreHistoricCipher:
     def __init__(self):
-        # You can customize this key and the cipher implementation
         self.key = 42
     
     def map_letter(self, letter):
@@ -11,30 +10,70 @@ class PreHistoricCipher:
             'd': 'stick',
             'e': 'boulder',
             'f': 'stone',
-            'g': 'G',
-            'h': 'H',
-            'i': 'I',
-            'j': 'J',
-            'k': 'K',
-            'l': 'L',
-            'm': 'M',
-            'n': 'N',
-            'o': 'O',
-            'p': 'P',
-            'q': 'Q',
-            'r': 'R',
-            's': 'S',
-            't': 'T',
-            'u': 'U',
-            'v': 'V',
-            'w': 'W',
-            'x': 'X',
-            'y': 'Y',
-            'z': 'Z',
+            'g': 'water',
+            'h': 'hunt',
+            'i': 'spear',
+            'j': 'cave',
+            'k': 'earth',
+            'l': 'bow',
+            'm': 'club',
+            'n': 'flint',
+            'o': 'bone',
+            'p': 'fur',
+            'q': 'hide',
+            'r': 'hut',
+            's': 'meat',
+            't': 'river',
+            'u': 'sky',
+            'v': 'tree',
+            'w': 'cloud',
+            'x': 'tribe',
+            'y': 'friend',
+            'z': 'enemy',
+            '!': 'fight',
+            '?': 'strong',
+            '.': 'chase',
+            ',': 'me',   
+            ' ': 'I',
+            '"': 'go'
         }
         return mapping.get(letter, letter)
 
-
+    def map_symbol(self, word):
+        mapping = {
+           'rock': r'[]',
+           'fire': r'/\/\',
+           'make': r'<>',
+           'stick': r'|',
+           'boulder': r'(O)',
+           'stone': r'*',
+           'water': r'~~^~~',
+           'hunt': r'->o',
+           'spear': r'====>',
+           'cave': r'[__]',
+           'earth': r'@@@',
+           'bow': r'(--)',
+           'club': r'=O',
+           'flint': r'<>*',
+           'bone': r'|-|',
+           'fur': r'###',
+           'hide': r'\|/',
+           'hut': r'/\',
+           'meat': r':o:',
+           'river': r'~~~~~',
+           'sky': r'* *',
+           'tree': r'/|\',
+           'cloud': r'(_)',
+           'tribe': r'{o}',
+           'friend': r':)',
+           'enemy': r'>:(',
+           'fight': r'><',
+           'strong': r'||',
+           'chase': r'>>',
+           'me': r'&',
+           'I': r'_',
+           'go': r'"'
+        }
 
     def encrypt(self, text):
         """
@@ -42,13 +81,6 @@ class PreHistoricCipher:
         This is a simple example - replace with your team's custom cipher.
         """
         encrypted = ''
-        for char in text:
-            # Simple shift cipher as placeholder - replace with your implementation
-            if char.isalpha():
-                shifted = chr((ord(char.lower()) - ord('a') + self.key) % 26 + ord('a'))
-                encrypted += shifted.upper() if char.isupper() else shifted
-            else:
-                encrypted += char
         return encrypted
     
     def decrypt(self, encrypted_text):
@@ -57,11 +89,4 @@ class PreHistoricCipher:
         This should reverse the encryption process.
         """
         decrypted = ''
-        for char in encrypted_text:
-            # Simple shift cipher reversal - replace with your implementation
-            if char.isalpha():
-                shifted = chr((ord(char.lower()) - ord('a') - self.key) % 26 + ord('a'))
-                decrypted += shifted.upper() if char.isupper() else shifted
-            else:
-                decrypted += char
         return decrypted 

@@ -2,21 +2,79 @@
 {% block content %}
     <h2>Encrypt Text</h2>
     <p>Enter the text you want to encrypt:</p>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="plaintext">Plaintext:</label>
             <input type="text" class="form-control" id="plaintext" name="plaintext" required>
         </div>
-        <button type="submit" class="btn btn-primary">Encrypt</button>
+
+        <div id="image_container" style="margin-top: 20px; border: 1px dashed #ccc; min-height: 150px; text-align: center; padding: 10px; display: flex; align-items: center; justify-content: center;">
+            <span id="image_placeholder" style="color: #aaa;">Image preview will appear here</span>
+            <img id="selected_image_preview" src="" alt="Selected Image Preview" style="max-width: 100%; max-height: 300px; height: auto; display: none;">
+        </div>
+
+        <button type="submit" id="encrypt_button" class="btn btn-primary mt-3" style="display: none;">Encrypt</button>
     </form>
+
     {% if ciphertext %}
-        <div class="alert alert-success mt-3">
-            <strong>Ciphertext:</strong> {{ ciphertext }}
+    <div class="alert alert-success mt-3">
+        <strong>Ciphertext (Embedded in processed image):</strong> {{ ciphertext }}
         </div>
-         <div class="mt-3">
-            <a href="{{ url_for('decrypt', ciphertext=ciphertext, plaintext=plaintext) }}" class="btn btn-secondary">
-                Go to Decrypt with this Ciphertext
-            </a>
-        </div>
+    {% if processed_image_url %}
+    <div class="mt-3">
+         <a href="{{ processed_image_url }}" class="btn btn-info" download="encrypted_image.png">Download Encrypted Image</a>
+    </div>
     {% endif %}
+
+   <div class="mt-3">
+        <a href="{{ url_for('decrypt', ciphertext=ciphertext) }}" class="btn btn-secondary">
+             Go to Decrypt
+        </a>
+    </div>
+
+    {% endif %}
+
+    {% if error %}
+    <div class="alert alert-danger mt-3">
+        <strong>Error:</strong> {{ error }}
+    </div>
+    {% endif %}
+
+<script>
+    const imageUpload = document.getElementById('image_upload');
+    const imagePreview = document.getElementById('selected_image_preview');
+    const imageContainer = document.getElementById('image_container');
+    const imagePlaceholder = document.getElementById('image_placeholder');
+    const encryptButton = document.getElementById('encrypt_button');
+
+    imageUpload.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+
+        if (file) {
+            // File selected
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block'; // Show the image element
+                imagePlaceholder.style.display = 'none'; // Hide the placeholder text
+                imageContainer.style.borderStyle = 'solid'; // Optional: change border style
+                encryptButton.style.display = 'block'; // Show the encrypt button
+            }
+
+            reader.readAsDataURL(file); // Read the file as a Data URL for preview
+        } else {
+            // No file selected or selection cancelled
+            imagePreview.src = ''; // Clear preview
+            imagePreview.style.display = 'none'; // Hide image element
+            imagePlaceholder.style.display = 'block'; // Show placeholder text
+            imageContainer.style.borderStyle = 'dashed'; // Revert border style
+            encryptButton.style.display = 'none'; // Hide the encrypt button
+        }
+    });
+
+    // Optional: Reset on form submission success/failure if needed,
+    // though a page reload typically handles this.
+</script>
+
 {% endblock %}

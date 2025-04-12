@@ -1,73 +1,83 @@
 {% extends "base.html" %}
+
+{% block title %}Decrypt - Steganography App{% endblock %}
+
 {% block content %}
-    <h2 style="color: #999;">Decrypt Text from Image</h2>
-    <p style="color: #999;">Select the image containing the encrypted text:</p>
+<div class="py-4">
+    <h1 class="mb-4">Decrypt Message</h1>
 
-    <form method="post" enctype="multipart/form-data">
+    {% if not result %}
+    <div class="card">
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data" id="decryptForm">
+                <div class="mb-3">
+                    <label for="encrypted_image_upload" class="form-label">Upload Encrypted Image</label>
+                    <input class="form-control" type="file" id="encrypted_image_upload" name="encrypted_image_file" accept=".png,.jpg,.jpeg" required>
+                    <div class="form-text">Supported formats: PNG</div>
+                </div>
 
-        <div class="form-group mt-3">
-            <input class="form-control" type="file" id="encrypted_image_upload" name="encrypted_image_file" accept="image/*" required>
+                <div class="mb-3">
+                    <label class="form-label">Image Preview</label>
+                    <div id="image_preview_container" class="preview-image" style="min-height: 200px; display: flex; align-items: center; justify-content: center; background-color: rgba(212, 179, 128, 0.1);">
+                        <span id="image_preview_placeholder" style="color: var(--color-tan);">Image preview will appear here</span>
+                        <img id="selected_image_preview" src="" alt="Selected Image Preview" style="max-width: 100%; max-height: 300px; height: auto; display: none;">
+                    </div>
+                </div>
+
+                <button type="submit" id="decrypt_button" class="btn btn-primary" style="display: none;">Decrypt Message</button>
+            </form>
         </div>
-
-        <div id="image_preview_container" style="margin-top: 20px; border: 1px dashed #ccc; border-radius: 10px; min-height: 150px; text-align: center; padding: 10px; display: flex; align-items: center; justify-content: center;">
-            <span id="image_preview_placeholder" style="color: #aaa;">Image preview will appear here</span>
-            <img id="selected_image_preview" src="" alt="Selected Image Preview" style="max-width: 100%; max-height: 300px; height: auto; display: none;">
+    </div>
+    {% else %}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Decryption Complete!</h5>
+            <div class="alert alert-success mt-3" style="background-color: rgba(231, 151, 60, 0.2); border-color: var(--color-orange); color: var(--color-sand);">
+                <strong>Decrypted Message:</strong> {{ plaintext }}
+            </div>
+            <div class="mt-4">
+                <a href="{{ url_for('decrypt') }}" class="btn btn-primary">
+                    Decrypt Another Message
+                </a>
+            </div>
         </div>
-
-        <button type="submit" id="decrypt_button" class="btn btn-primary mt-3" style="display: none;">Decrypt</button>
-
-    </form>
-
-    {% if plaintext %}
-        <div class="alert alert-success mt-3">
-            <strong>Decrypted Plaintext:</strong> {{ plaintext }}
-        </div>
-        <div class="mt-3">
-            <a href="{{ url_for('encrypt', plaintext=plaintext) }}" class="btn btn-secondary">
-                Go to Encrypt with this Plaintext
-            </a>
-        </div>
+    </div>
     {% endif %}
 
     {% if error %}
-        {# Display specific errors from decryption attempt #}
-        <div class="alert alert-danger mt-3">
-            <strong>Error:</strong> {{ error }}
-        </div>
+    <div class="alert alert-danger mt-3" style="background-color: rgba(255, 63, 70, 0.2); border-color: var(--color-flame); color: var(--color-sand);">
+        <strong>Error:</strong> {{ error }}
+    </div>
     {% endif %}
+</div>
 
-    <script>
-        const imageUploadInput = document.getElementById('encrypted_image_upload');
-        const imagePreview = document.getElementById('selected_image_preview');
-        const imagePreviewContainer = document.getElementById('image_preview_container');
-        const imagePlaceholder = document.getElementById('image_preview_placeholder');
-        const decryptButton = document.getElementById('decrypt_button');
+<script>
+    const imageUploadInput = document.getElementById('encrypted_image_upload');
+    const imagePreview = document.getElementById('selected_image_preview');
+    const imagePreviewContainer = document.getElementById('image_preview_container');
+    const imagePlaceholder = document.getElementById('image_preview_placeholder');
+    const decryptButton = document.getElementById('decrypt_button');
 
-        imageUploadInput.addEventListener('change', function(event) {
-            const file = event.target.files[0];
+    imageUploadInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
 
-            if (file) {
-                // File selected
-                const reader = new FileReader();
+        if (file) {
+            const reader = new FileReader();
 
-                reader.onload = function(e) {
-                    imagePreview.src = e.target.result;
-                    imagePreview.style.display = 'block'; // Show the image element
-                    imagePlaceholder.style.display = 'none'; // Hide the placeholder text
-                    imagePreviewContainer.style.borderStyle = 'solid'; // Optional: change border style
-                    decryptButton.style.display = 'block'; // Show the decrypt button
-                }
-
-                reader.readAsDataURL(file); // Read the file as a Data URL for preview
-            } else {
-                // No file selected or selection cancelled
-                imagePreview.src = ''; // Clear preview
-                imagePreview.style.display = 'none'; // Hide image element
-                imagePlaceholder.style.display = 'block'; // Show placeholder text
-                imagePreviewContainer.style.borderStyle = 'dashed'; // Revert border style
-                decryptButton.style.display = 'none'; // Hide the decrypt button
+            reader.onload = function(e) {
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block';
+                imagePlaceholder.style.display = 'none';
+                decryptButton.style.display = 'block';
             }
-        });
-    </script>
 
+            reader.readAsDataURL(file);
+        } else {
+            imagePreview.src = '';
+            imagePreview.style.display = 'none';
+            imagePlaceholder.style.display = 'block';
+            decryptButton.style.display = 'none';
+        }
+    });
+</script>
 {% endblock %}

@@ -1,79 +1,51 @@
 class PreHistoricCipher:
     def __init__(self):
-        self.key = 42
     
-    def map_letter(self, letter):
+    def map_symbol(self, symbol):
         mapping = {
-            'a': 'rock',
-            'b': 'fire',
-            'c': 'make',
-            'd': 'stick',
-            'e': 'boulder',
-            'f': 'stone',
-            'g': 'water',
-            'h': 'hunt',
-            'i': 'spear',
-            'j': 'cave',
-            'k': 'earth',
-            'l': 'bow',
-            'm': 'club',
-            'n': 'flint',
-            'o': 'bone',
-            'p': 'fur',
-            'q': 'hide',
-            'r': 'hut',
-            's': 'meat',
-            't': 'river',
-            'u': 'sky',
-            'v': 'tree',
-            'w': 'cloud',
-            'x': 'tribe',
-            'y': 'friend',
-            'z': 'enemy',
-            '!': 'fight',
-            '?': 'strong',
-            '.': 'chase',
-            ',': 'me',   
-            ' ': 'I',
-            '"': 'go'
+            'a': '---->', # arrow
+            'b': '>=--=<', # bone
+            'c': '()====-', # club
+            'd': '_,,,---\'\'\'\'\'---,,,_', # _,,,---'''''---,,,_ - cloud
+            'e': '(((O)))', # earth
+            'f': '!><!', # fight
+            'g': 'GRRR', # grrr
+            'h': '...> /)> o', # hunt
+            'i': 'o/', # me
+            'j': 'o/   \\o', # o/   \o -  us
+            'k': '//^^^^^^^^\\\\', # //^^^^^^^^\\ - cave
+            'l': '(^_^)', # like
+            'm': '[===]', # meat
+            'n': 'NAH', # nah
+            'o': 'OOGA', # ooga
+            'p': '\\_________________/', # \_________________/ - pit
+            'q': 'QUAHHH', # quahhh
+            'r': 'RAHHH', # rahhh
+            's': '.o0o.', # stone
+            't': '*^|*/\\|---', # *^|*/\|--- - tree (look sideways)
+            'u': 'UUGHH', # uughh
+            'v': '----|-=-=-=-=->', # spear
+            'w': '~~~^~~~^~~~^~~~^~~~', # water
+            'x': '>:x o!', # kill
+            'y': 'YAHOO!!!', # yahoo
+            'z': '(_ _)...zZz', # sleep
+            '!': 'AARGH!', # aargh!
+            '?': 'HUH?', # huh?
+            '.': 'GRAH!', # grah!
+            ',': ',', # ,
+            ' ': ' ', # space
+            '1': 'ONE', # one
+            '2': 'TWO', # two
+            '3': 'THREE', # three
+            '4': 'FOUR', # four
+            '5': 'FIVE', # five
+            '6': 'CANT', # cant
+            '7': 'COUNT', # count
+            '8': 'THAT', # that
+            '9': 'HIGH', # high
+            '0': 'NO' # no
         }
         return mapping.get(letter, letter)
-
-    def map_symbol(self, word):
-        mapping = {
-           'rock': r'[]',
-           'fire': r'/\/\',
-           'make': r'<>',
-           'stick': r'|',
-           'boulder': r'(O)',
-           'stone': r'*',
-           'water': r'~~^~~',
-           'hunt': r'->o',
-           'spear': r'====>',
-           'cave': r'[__]',
-           'earth': r'@@@',
-           'bow': r'(--)',
-           'club': r'=O',
-           'flint': r'<>*',
-           'bone': r'|-|',
-           'fur': r'###',
-           'hide': r'\|/',
-           'hut': r'/\',
-           'meat': r':o:',
-           'river': r'~~~~~',
-           'sky': r'* *',
-           'tree': r'/|\',
-           'cloud': r'(_)',
-           'tribe': r'{o}',
-           'friend': r':)',
-           'enemy': r'>:(',
-           'fight': r'><',
-           'strong': r'||',
-           'chase': r'>>',
-           'me': r'&',
-           'I': r'_',
-           'go': r'"'
-        }
 
     def encrypt(self, text):
         """

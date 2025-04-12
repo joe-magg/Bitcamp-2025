@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'Jello Stone';
+    src: url('/static/fonts/jello-stone.ttf') format('truetype');
+}
+
+body {
+    font-family: 'Jello Stone', sans-serif; /* Apply the font globally */
+}

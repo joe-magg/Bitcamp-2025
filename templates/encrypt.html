@@ -1,78 +1,55 @@
 {% extends "base.html" %}
+
+{% block title %}Encrypt - Steganography App{% endblock %}
+
 {% block content %}
-    <h2 style="color: #999;">Encrypt Text</h2>
-    <form method="post" enctype="multipart/form-data">
-        <div class="form-group">
-            <input type="text" class="form-control" id="plaintext" name="plaintext" placeholder="Enter the text you want to encrypt..." required>
-        </div>
+<div class="py-4">
+    <h1 class="mb-4">Encrypt Message</h1>
 
-        <div id="image_container" style="margin-top: 20px; border: 1px dashed #ccc; border-radius: 10px; min-height: 150px; text-align: center; padding: 10px; display: flex; align-items: center; justify-content: center;">
-            <span id="image_placeholder" style="color: #aaa;">Image preview will appear here</span>
-            <img id="selected_image_preview" src="" alt="Selected Image Preview" style="max-width: 100%; max-height: 300px; height: auto; display: none;">
+    {% if not result %}
+    <div class="card">
+        <div class="card-body">
+            <form method="POST" enctype="multipart/form-data" id="encryptForm">
+                <div class="mb-3">
+                    <label for="text" class="form-label">Secret Message</label>
+                    <textarea class="form-control" id="text" name="text" rows="4" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Upload Image</label>
+                    <input type="file" class="form-control" id="image" name="image" accept=".png,.jpg,.jpeg" required>
+                    <div class="form-text">Supported formats: PNG, JPG, JPEG</div>
+                </div>
+                <button type="submit" class="btn btn-primary">Encrypt Message</button>
+            </form>
         </div>
-
-        <button type="submit" id="encrypt_button" class="btn btn-primary mt-3" style="display: none;">Encrypt</button>
-    </form>
-
-    {% if ciphertext %}
-    <div class="alert alert-success mt-3">
-        <strong>Ciphertext (Embedded in processed image):</strong> {{ ciphertext }}
+    </div>
+    {% else %}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Encryption Complete!</h5>
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <h6>Original Image</h6>
+                    <img src="{{ url_for('static', filename='uploads/' + original_image) }}" 
+                         class="img-fluid preview-image" alt="Original image">
+                </div>
+                <div class="col-md-6">
+                    <h6>Image with Hidden Message</h6>
+                    <img src="{{ url_for('static', filename='uploads/' + encrypted_image) }}" 
+                         class="img-fluid preview-image" alt="Encrypted image">
+                    <div class="mt-3">
+                        <a href="{{ url_for('static', filename='uploads/' + encrypted_image) }}" 
+                           class="btn btn-success" download>
+                            Download Encrypted Image
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4">
+                <a href="{{ url_for('encrypt') }}" class="btn btn-primary">Encrypt Another Message</a>
+            </div>
         </div>
-    {% if processed_image_url %}
-    <div class="mt-3">
-         <a href="{{ processed_image_url }}" class="btn btn-info" download="encrypted_image.png">Download Encrypted Image</a>
     </div>
     {% endif %}
-
-   <div class="mt-3">
-        <a href="{{ url_for('decrypt', ciphertext=ciphertext) }}" class="btn btn-secondary">
-             Go to Decrypt
-        </a>
-    </div>
-
-    {% endif %}
-
-    {% if error %}
-    <div class="alert alert-danger mt-3">
-        <strong>Error:</strong> {{ error }}
-    </div>
-    {% endif %}
-
-<script>
-    const imageUpload = document.getElementById('image_upload');
-    const imagePreview = document.getElementById('selected_image_preview');
-    const imageContainer = document.getElementById('image_container');
-    const imagePlaceholder = document.getElementById('image_placeholder');
-    const encryptButton = document.getElementById('encrypt_button');
-
-    imageUpload.addEventListener('change', function(event) {
-        const file = event.target.files[0];
-
-        if (file) {
-            // File selected
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                imagePreview.src = e.target.result;
-                imagePreview.style.display = 'block'; // Show the image element
-                imagePlaceholder.style.display = 'none'; // Hide the placeholder text
-                imageContainer.style.borderStyle = 'solid'; // Optional: change border style
-                encryptButton.style.display = 'block'; // Show the encrypt button
-            }
-
-            reader.readAsDataURL(file); // Read the file as a Data URL for preview
-        } else {
-            // No file selected or selection cancelled
-            imagePreview.src = ''; // Clear preview
-            imagePreview.style.display = 'none'; // Hide image element
-            imagePlaceholder.style.display = 'block'; // Show placeholder text
-            imageContainer.style.borderStyle = 'dashed'; // Revert border style
-            encryptButton.style.display = 'none'; // Hide the encrypt button
-        }
-    });
-
-    // Optional: Reset on form submission success/failure if needed,
-    // though a page reload typically handles this.
-</script>
-
+</div>
 {% endblock %}

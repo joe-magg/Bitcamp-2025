@@ -2,11 +2,11 @@ class PreHistoricCipher:
     def __init__(self):
         self.mapping = {
             'A': '---->', # arrow
-            'B': '>=--=<', # bone
+            'B': '8======8', # bone
             'C': '()====-', # club
             'D': '_,,,---\'\'\'\'\'---,,,_', # _,,,---'''''---,,,_ - cloud
             'E': '(((O)))', # earth
-            'F': '!><!', # fight
+            'F': '!x/ \\x!', # fight !x/ \x!
             'G': 'GRRR', # grrr
             'H': '...> /)> o', # hunt
             'I': 'o/', # me

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to My Web App</h1>
+        <p class="lead">This is a simple web application built with Flask.</p>
+        <hr class="my-4">
+        <p>Use the navigation tabs above to explore the different sections.</p>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>About</h2>
+            <p>This web application provides basic encryption and decryption functionality.  It's a starting point for learning how to build web applications with Flask.</p>
+        </div>
+        <div class="col-md-6">
+            <h2>Features</h2>
+            <ul>
+                <li>Home page with general information</li>
+                <li>Encryption page with a form for input</li>
+                <li>Decryption page with a form for input</li>
+                <li>Responsive design using Bootstrap</li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

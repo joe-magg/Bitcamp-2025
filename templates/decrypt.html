@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Decrypt Text</h2>
+    <p>Enter the text you want to decrypt:</p>
+    <form method="post">
+        <div class="form-group">
+            <label for="ciphertext">Ciphertext:</label>
+            <input type="text" class="form-control" id="ciphertext" name="ciphertext" required value="{{ ciphertext if ciphertext else '' }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Decrypt</button>
+    </form>
+    {% if plaintext %}
+        <div class="alert alert-success mt-3">
+            <strong>Plaintext:</strong> {{ plaintext }}
+        </div>
+         <div class="mt-3">
+            <a href="{{ url_for('encrypt', plaintext=plaintext) }}" class="btn btn-secondary">
+                Go to Encrypt with this Plaintext
+            </a>
+        </div>
+    {% endif %}
+{% endblock %}

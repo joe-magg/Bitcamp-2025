@@ -1,16 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-    <h2>Decrypt Text from Image</h2>
-    <p>Select the image containing the encrypted text:</p>
+    <h2 style="color: #999;">Decrypt Text from Image</h2>
+    <p style="color: #999;">Select the image containing the encrypted text:</p>
 
     <form method="post" enctype="multipart/form-data">
 
         <div class="form-group mt-3">
-            <label for="encrypted_image_upload" class="form-label">Select Encrypted Image:</label>
             <input class="form-control" type="file" id="encrypted_image_upload" name="encrypted_image_file" accept="image/*" required>
         </div>
 
-        <div id="image_preview_container" style="margin-top: 20px; border: 1px dashed #ccc; min-height: 150px; text-align: center; padding: 10px; display: flex; align-items: center; justify-content: center;">
+        <div id="image_preview_container" style="margin-top: 20px; border: 1px dashed #ccc; border-radius: 10px; min-height: 150px; text-align: center; padding: 10px; display: flex; align-items: center; justify-content: center;">
             <span id="image_preview_placeholder" style="color: #aaa;">Image preview will appear here</span>
             <img id="selected_image_preview" src="" alt="Selected Image Preview" style="max-width: 100%; max-height: 300px; height: auto; display: none;">
         </div>

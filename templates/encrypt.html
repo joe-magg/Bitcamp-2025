@@ -1,14 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-    <h2>Encrypt Text</h2>
-    <p>Enter the text you want to encrypt:</p>
+    <h2 style="color: #999;">Encrypt Text</h2>
     <form method="post" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="plaintext">Plaintext:</label>
-            <input type="text" class="form-control" id="plaintext" name="plaintext" required>
+            <input type="text" class="form-control" id="plaintext" name="plaintext" placeholder="Enter the text you want to encrypt..." required>
         </div>
 
-        <div id="image_container" style="margin-top: 20px; border: 1px dashed #ccc; min-height: 150px; text-align: center; padding: 10px; display: flex; align-items: center; justify-content: center;">
+        <div id="image_container" style="margin-top: 20px; border: 1px dashed #ccc; border-radius: 10px; min-height: 150px; text-align: center; padding: 10px; display: flex; align-items: center; justify-content: center;">
             <span id="image_placeholder" style="color: #aaa;">Image preview will appear here</span>
             <img id="selected_image_preview" src="" alt="Selected Image Preview" style="max-width: 100%; max-height: 300px; height: auto; display: none;">
         </div>

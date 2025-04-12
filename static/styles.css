@@ -19,13 +19,9 @@
 }
 
 body {
-    background-image: url('static/WildernessCampfire.jpg');
     font-family: 'Jello Stone', sans-serif;
     padding-top: 70px;
     background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed;
     background-color: var(--color-brown);
     min-height: 100vh;
     color: var(--color-sand);

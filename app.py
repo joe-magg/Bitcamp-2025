@@ -63,11 +63,11 @@ def encrypt():
         output_path = os.path.join(app.config['UPLOAD_FOLDER'], output_filename)
         secret.save(output_path)
         
-        
         return render_template('encrypt.html', 
                              result=True, 
                              original_image=filename,
-                             encrypted_image=output_filename)
+                             encrypted_image=output_filename,
+                             ciphertext = encrypted_text,)
     
     return render_template('encrypt.html', result=False)
 

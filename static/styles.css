@@ -20,7 +20,7 @@
 
 body {
     font-family: 'Jello Stone', sans-serif;
-    padding-top: 70px;
+    padding-top: 100px;
     background-size: cover;
     background-color: var(--color-brown);
     min-height: 100vh;
@@ -33,11 +33,12 @@ body {
 }
 
 .navbar-brand {
-    font-size: 1.5rem;
+    font-size: 2.8rem;
     color: var(--color-peach) !important;
 }
 
 .nav-link {
+    font-size: 2.0rem;
     color: var(--color-sand) !important;
     transition: color 0.3s ease;
 }

@@ -10,7 +10,9 @@
 <body>
     <nav class="navbar navbar-expand navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="{{ url_for('encrypt') }}">Cipherzoic</a>
+            <a class="navbar-brand" href="{{ url_for('encrypt') }}">
+                <img src="{{ url_for('static', filename='images/g20.png') }}" alt="Cipherzoic Logo" height="50" class="d-inline-block align-text-bottom me-2">
+                Cipherzoic</a>
             <div class="navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">

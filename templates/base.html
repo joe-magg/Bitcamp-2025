@@ -8,51 +8,16 @@
     <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
     <style>
         body {
-            font-family: 'Jello Stone', sans-serif; /* Apply your custom font globally */
-            padding-top: 70px; /* Adjusted for fixed navbar height */
             background-image: url("{{ url_for('static', filename='WildernessCampfire.jpg') }}");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-attachment: fixed;
-            background-color: #f8f9fa;
-
-            min-height: 100vh;
-        }
-        .navbar-brand {
-            font-size: 1.5rem;
-        }
-        .nav-item {
-            font-size: 1.1rem;
-        }
-        .container {
-            margin-top: 20px;
-        }
-        .form-control {
-            color: #999;
-            background-color: transparent;
-        }
-        .form-control:focus {
-            color: #999;
-            background-color: transparent;
-        }
-        .form-control::placeholder {
-            color: #999;
-        }
-        h1, h2, h3 {
-            font-family: 'Jello Stone', sans-serif;
         }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="{{ url_for('home') }}">Caveman Cipher</a>
+            <a class="navbar-brand" href="{{ url_for('encrypt') }}">Caveman Cipher</a>
             <div class="navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('home') }}">Home</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('encrypt') }}">Encrypt</a>
                     </li>

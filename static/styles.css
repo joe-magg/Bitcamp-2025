@@ -1,8 +1,124 @@
+:root {
+    --color-brown: #5A3725;
+    --color-orange: #E7973C;
+    --color-peach: #FFBF7B;
+    --color-sand: #FDD6AB;
+    --color-tan: #D4B380;
+    --color-bitcamp: #ff6f3f;
+    --color-midnight: #1a2e33;
+    --color-shell: #ebeae6;
+    --color-white: #fff;
+    --color-soil: #13192f;
+    --color-flame: #ff3f46;
+    --color-sky: #cbf3ff;
+}
+
 @font-face {
     font-family: 'Jello Stone';
     src: url('/static/fonts/jello-stone.ttf') format('truetype');
 }
 
 body {
-    font-family: 'Jello Stone', sans-serif; /* Apply the font globally */
+    font-family: 'Jello Stone', sans-serif;
+    padding-top: 70px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-color: var(--color-brown);
+    min-height: 100vh;
+    color: var(--color-sand);
+}
+
+.navbar {
+    background-color: var(--color-brown);
+    border-bottom: 3px solid var(--color-orange);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    color: var(--color-peach) !important;
+}
+
+.nav-link {
+    color: var(--color-sand) !important;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--color-orange) !important;
+}
+
+.nav-item {
+    font-size: 1.1rem;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+.card {
+    background-color: rgba(90, 55, 37, 0.9);
+    border: 2px solid var(--color-orange);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-body {
+    color: var(--color-sand);
+}
+
+.form-control {
+    background-color: rgba(212, 179, 128, 0.1);
+    border: 1px solid var(--color-orange);
+    color: var(--color-sand);
+}
+
+.form-control:focus {
+    background-color: rgba(212, 179, 128, 0.2);
+    border-color: var(--color-peach);
+    color: var(--color-white);
+    box-shadow: 0 0 0 0.25rem rgba(231, 151, 60, 0.25);
+}
+
+.form-control::placeholder {
+    color: var(--color-tan);
+}
+
+.btn-primary {
+    background-color: var(--color-orange);
+    border-color: var(--color-orange);
+    color: var(--color-brown);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-peach);
+    border-color: var(--color-peach);
+    color: var(--color-brown);
+}
+
+.btn-success {
+    background-color: var(--color-peach);
+    border-color: var(--color-orange);
+    color: var(--color-brown);
+}
+
+.btn-success:hover {
+    background-color: var(--color-orange);
+    border-color: var(--color-peach);
+    color: var(--color-brown);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color-peach);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.form-text {
+    color: var(--color-tan) !important;
+}
+
+.preview-image {
+    border: 3px solid var(--color-orange);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }

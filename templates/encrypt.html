@@ -30,8 +30,23 @@
             {% if ciphertext %}
                 <div class="mt-3">
                     <h6>Ciphertext</h6>
-                    <textarea class="form-control" rows="3" readonly>{{ ciphertext }}</textarea>
+                    <h6 id="typewriter"></h6>
                 </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const typewriterElement = document.getElementById('typewriter');
+                        if (typewriterElement) {
+                            new Typed('#typewriter', {
+                                strings: [{{ ciphertext|tojson }}],
+                                typeSpeed: 50,
+                                loop: false,
+                                showCursor: false
+                            });
+                        } else {
+                            console.error("Element with ID 'typewriter' not found.");
+                        }
+                    });
+                </script>
             {% endif %}
             <div class="row mt-4">
                 <div class="col-md-6">

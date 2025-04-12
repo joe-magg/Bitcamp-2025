@@ -27,7 +27,7 @@ def allowed_file(filename):
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return redirect(url_for('encrypt'))
 
 @app.route('/encrypt', methods=['GET', 'POST'])
 def encrypt():
@@ -58,8 +58,11 @@ def encrypt():
         # Hide encrypted text in image
         secret = lsb.hide(filepath, encrypted_text)
         output_filename = 'encrypted_' + filename
+
+        # Save the encrypted image
         output_path = os.path.join(app.config['UPLOAD_FOLDER'], output_filename)
         secret.save(output_path)
+        
         
         return render_template('encrypt.html', 
                              result=True, 

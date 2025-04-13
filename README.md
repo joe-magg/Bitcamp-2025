@@ -4,11 +4,18 @@ A Flask web application that combines a custom cipher with steganography to embe
 
 Built for Bitcamp 2025.
 
+### Authors:
+<a href="https://github.com/joe-magg/Bitcamp-2025/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=joe-magg/Bitcamp-2025" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
+
 ## Features
 
-- Custom cipher implementation for message encryption
+- Custom prehistoric cipher for message encryption
 - Steganography using LSB (Least Significant Bit) technique
-- Upload and process PNG/JPG images
+- Upload and process PNG images
 - User-friendly web interface
 
 ## Setup

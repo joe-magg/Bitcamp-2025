@@ -2,7 +2,7 @@
 
 A Flask web application that combines a custom cipher with steganography to embed secret messages in images. 
 
-Built for Bitcamp 2025.
+Built for Bitcamp 2025. Check us out on [Devpost](https://devpost.com/software/cipherzoic).
 
 ### Authors:
 <a href="https://github.com/joe-magg/Bitcamp-2025/graphs/contributors">
@@ -14,7 +14,7 @@ Made with [contrib.rocks](https://contrib.rocks).
 ## Features
 
 - Custom prehistoric cipher for message encryption
-- Steganography using LSB (Least Significant Bit) technique
+- Steganography using LSB (Least Significant Bit) technique (stegano library)
 - Upload and process PNG images
 - User-friendly web interface
 
@@ -35,7 +35,7 @@ pip install -r requirements.txt
 ```bash
 python app.py
 ```
-
+Note that this app should be run on Python 3.12.7.
 4. Open your browser and navigate to `http://localhost:5000`
 
 ## Custom Cipher

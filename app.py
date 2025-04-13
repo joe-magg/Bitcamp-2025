@@ -12,8 +12,6 @@ load_dotenv()
 
 # Initialize the Flask application
 app = Flask(__name__)
-app.secret_key = os.getenv('FLASK_SECRET_KEY', 'your-secret-key-here')
-
 # Configure upload folder
 UPLOAD_FOLDER = 'static/uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
@@ -106,4 +104,4 @@ def decrypt():
 
 # Run the Flask development server
 if __name__ == '__main__':
-    app.run(debug=True) # debug=True enables auto-reloading and detailed errors
+    app.run(host='0.0.0.0') # debug=True enables auto-reloading and detailed errors

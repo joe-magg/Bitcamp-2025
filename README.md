@@ -1,4 +1,4 @@
-# Prehistoric Cipher
+# Cipherzoic
 
 A Flask web application that combines a custom cipher with steganography to embed secret messages in images. 
 

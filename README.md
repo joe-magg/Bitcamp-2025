@@ -36,6 +36,7 @@ pip install -r requirements.txt
 python app.py
 ```
 Note that this app should be run on Python 3.12.7.
+
 4. Open your browser and navigate to `http://localhost:5000`
 
 ## Custom Cipher

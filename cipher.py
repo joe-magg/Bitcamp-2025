@@ -1,5 +1,12 @@
+"""
+PreHistoricCipher
+responsible for encrypting and decrypting text using a custom prehistoric cipher.
+"""
 class PreHistoricCipher:
     def __init__(self):
+        """
+        Initialize the PreHistoricCipher with a mapping of our allowed characters.
+        """
         self.mapping = {
             'A': '---->', # arrow
             'B': '8======8', # bone
@@ -43,13 +50,16 @@ class PreHistoricCipher:
             '0': 'NO', # no
             ' ': 'AND'
         }
+    
     def map_symbol(self, symbol):
+        """
+        Map a symbol to its prehistoric representation.
+        """
         return self.mapping[symbol]
 
     def encrypt(self, text):
         """
-        Implement your custom encryption algorithm here.
-        This is a simple example - replace with your team's custom cipher.
+        Encrypt the input text using the prehistoric cipher.
         """
         encrypted = ''
         # Check for invalid characters
@@ -65,8 +75,7 @@ class PreHistoricCipher:
     
     def decrypt(self, encrypted_text):
         """
-        Implement your custom decryption algorithm here.
-        This should reverse the encryption process.
+        Decrypt the encrypted text using the prehistoric cipher.
         """
         decrypted = ''
         # Create reverse mapping from encrypted symbols to letters

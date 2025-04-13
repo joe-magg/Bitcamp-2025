@@ -1,20 +1,17 @@
 # Import necessary modules from Flask
 from flask import Flask, render_template, request, redirect, url_for, flash
-# Import secure_filename for safely handling filenames (optional but recommended)
+# Import other necessary modules
 from werkzeug.utils import secure_filename
-import os # Needed for potential file saving/processing
+import os
 from cipher import PreHistoricCipher
 from stegano import lsb
-from dotenv import load_dotenv
-
-# Load environment variables
-load_dotenv()
 
 # Initialize the Flask application
 app = Flask(__name__)
+
 # Configure upload folder
 UPLOAD_FOLDER = 'static/uploads'
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+ALLOWED_EXTENSIONS = {'png'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Ensure upload directory exists
@@ -27,6 +24,10 @@ def allowed_file(filename):
 def home():
     return redirect(url_for('encrypt'))
 
+"""
+cipherzoic.tech/encrypt
+responsible for running user input through our cipher and then hiding the encrypted text in an image
+"""
 @app.route('/encrypt', methods=['GET', 'POST'])
 def encrypt():
     if request.method == 'POST':
@@ -69,6 +70,10 @@ def encrypt():
     
     return render_template('encrypt.html', result=False)
 
+"""
+cipherzoic.tech/decrypt
+responsible for extracting the hidden ciphertext from the image and then decrypting it to reveal secret message.
+"""
 @app.route('/decrypt', methods=['GET', 'POST'])
 def decrypt():
     if request.method == 'POST':
@@ -102,6 +107,6 @@ def decrypt():
     
     return render_template('decrypt.html', result=False)
 
-# Run the Flask development server
+# Run the Flask server
 if __name__ == '__main__':
-    app.run(host='0.0.0.0') # debug=True enables auto-reloading and detailed errors
+    app.run(host='0.0.0.0')
